@@ -9,4 +9,4 @@ export interface NavItemWithChildren extends NavItem {
     menu: NavItemWithChildren[];
 }
 
-export type MainNavItem = NavItemWithChildren;
+export type MainNavItem = NavItemWithChildren;  
