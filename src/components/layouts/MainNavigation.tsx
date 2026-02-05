@@ -9,48 +9,22 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import type { MainNavItem } from "@/types";
+import { Icons } from "@/components/icons";
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
-export default function MainNavigation() {
+interface MainNavigationProps {
+  items?: MainNavItem[];
+}
+
+export default function MainNavigation({items} : MainNavigationProps) {
   return (
-    <div>
-      <Link to="/"></Link>
+    <div className="hidden lg:flex">
+      <Link to="/" className="items-center space-x-2">
+      <div className="size-7" aria-hidden="true">
+        <Icons.logo />
+      </div>
+      <span className="font-bold">Furniture Shop</span>
+      </Link>
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
