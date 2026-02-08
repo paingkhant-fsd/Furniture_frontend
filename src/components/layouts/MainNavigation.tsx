@@ -11,59 +11,52 @@ import {
 } from "@/components/ui/navigation-menu";
 import type { MainNavItem } from "@/types";
 import { Icons } from "@/components/icons";
+import { siteConfig } from "@/config/site";
 
 interface MainNavigationProps {
   items?: MainNavItem[];
 }
 
-export default function MainNavigation({items} : MainNavigationProps) {
+export default function MainNavigation({ items }: MainNavigationProps) {
   return (
-    <div className="hidden lg:flex">
-      <Link to="/" className="items-center space-x-2">
-      <div className="size-7" aria-hidden="true">
-        <Icons.logo />
-      </div>
-      <span className="font-bold">Furniture Shop</span>
+    <div className="hidden gap-6 lg:flex">
+      <Link to="/" className="items-center space-x-2 flex">
+        <div className="size-6" aria-hidden="true">
+          <Icons.logo />
+        </div>
+        <span className="font-bold inline-block">{siteConfig.title}</span>
+        <span className="sr-only">Home</span>
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="w-96">
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built with Tailwind CSS.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
-                </ListItem>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem className="hidden md:flex">
-            <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-100 gap-2 md:w-125 lg:w-150 md:grid-cols-2">
-                {components.map((component) => (
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  >
-                    {component.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link to="/docs">Docs</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          {items?.[0]?.card && (
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>{items[0].title}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="w-96">
+                  {items[0].card.map((item) =>
+                    item.href ? (
+                      <ListItem
+                        key={String(item.title || item.href)}
+                        href={item.href}
+                        title={item.title}
+                      >
+                        {item.description}
+                      </ListItem>
+                    ) : null,
+                  )}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          )}
+          {items?.[0]?.menu &&
+            items[0].menu.map((item) => (
+              <NavigationMenuItem key={String(item.title || item.href)}>
+                <NavigationMenuLink asChild>
+                  <Link to={String(item.href)}>{item.title}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
         </NavigationMenuList>
       </NavigationMenu>
     </div>
@@ -78,7 +71,7 @@ function ListItem({
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <Link to={href}>
+        <Link to={String(href)}>
           <div className="flex flex-col gap-1 text-sm">
             <div className="leading-none font-medium">{title}</div>
             <div className="text-muted-foreground line-clamp-2">{children}</div>
