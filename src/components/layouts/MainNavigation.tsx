@@ -9,12 +9,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import type { MainNavItem } from "@/types";
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
+interface NavItem {
+  title: string;
+  card?: { title: string; href: string; description: string }[];
+  menu?: { title: string; href: string }[];
+}
+
 interface MainNavigationProps {
-  items?: MainNavItem[];
+  items?: NavItem[];
 }
 
 export default function MainNavigation({ items }: MainNavigationProps) {
