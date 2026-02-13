@@ -23,7 +23,7 @@ export const siteConfig = {
     ],
     menu: [
         { title: "Services", href: "services" },
-        { title: "Blog", href: "blog" },
+        { title: "Blog", href: "blogs" },
         { title: "About us", href: "about" },
     ],
    },
