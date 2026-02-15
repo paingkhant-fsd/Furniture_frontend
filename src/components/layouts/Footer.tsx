@@ -6,7 +6,7 @@ import NewsLetterForm from "@/components/new-letters";
 function Footer() {
   return <footer className="w-full border-t ml-4 lg:ml-0">
     <div className="mx-auto container pb-8 pt-6 lg:py-6">
-        <section className="flex flex-col lg:flex-row gap-10 lg:gap-20 ">
+        <section className="flex flex-col lg:flex-row lg:justify-between gap-10 lg:gap-20 ">
             <section>
                 <Link to="/" className="flex items-center space-x-2">
                 <div className="size-6" aria-hidden="true">

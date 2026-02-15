@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +30,22 @@ interface MobileNavigationProps {
 }
 
 export default function MobileNavigation({ items }: MobileNavigationProps) {
+  const [isDeskop, setIsDesktop] = useState(false);
+  const query = ("(min-width: 1024px)");
+
+  useEffect(() => {
+    function onChange(event: MediaQueryListEvent) {
+      setIsDesktop(event.matches);
+    }
+   const result = matchMedia(query);
+   result.addEventListener("change", onChange);
+   return ()=> result.removeEventListener("change", onChange);
+  }, [query]);
+
+  if (isDeskop) {
+    return null;
+  }
+
   const navItems = items ?? siteConfig.mainNav;
 
   return (
