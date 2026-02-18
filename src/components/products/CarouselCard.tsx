@@ -40,7 +40,7 @@ export default function CarouselCard({ products }: ProductProps) {
                   {product.name}
                 </h3>
                 <p className="my-2 line-clamp-2 text-sm text-gray-600">
-                  {product.description.length > 55 ?product.description.substring(0, 55) + "..." : product.description}
+                  {product.description}
                 </p>
                 <Link
                   to={`/products/${product.id}`}

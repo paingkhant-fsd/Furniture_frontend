@@ -1,33 +1,66 @@
+/* eslint-disable react-hooks/static-components */
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import couch from "@/data/images/couch.png";
 import CarouselCard from "@/components/products/CarouselCard";
 import { products } from "@/data/products";
+import { posts } from "@/data/posts";
+import BlogCard from "@/components/blogs/BlogCard";
+import type { Post } from "@/types";
+
+const samplePosts: Post[] = posts.slice(0, 3);
 
 function Home() {
+  const Title = ({
+    title,
+    href,
+    sideText,
+  }: {
+    title: string;
+    href: string;
+    sideText: string;
+  }) => (
+    <div className="mt-28 mb-10 px-4 flex flex-col md:flex-row md:justify-between md:px-0">
+      <h2 className="mb-4 text-2xl font-bold md:mb-0">{title}</h2>
+      <Link to={href} className="text-muted-foreground font-semibold underline">
+        {sideText}
+      </Link>
+    </div>
+  );
   return (
     <div className="container mx-auto mt-16">
-      <div className="flex flex-col lg:justify-between lg:flex-row">
+      <div className="flex flex-col lg:flex-row lg:justify-between">
         {/* Text Section */}
-        <div className="my-8 lg:mb-0 lg:mt-20 text-center lg:text-left lg:w-2/5">
-          <h1 className="text-4xl font-extrabold mb-4 lg:mb-8 text-own lg:text-6xl">Modern Interior Design Studio</h1>
-          <p className="mb-6 lg:mb-8 text-own">
+        <div className="my-8 text-center lg:mt-20 lg:mb-0 lg:w-2/5 lg:text-left">
+          <h1 className="text-own mb-4 text-4xl font-extrabold lg:mb-8 lg:text-6xl">
+            Modern Interior Design Studio
+          </h1>
+          <p className="text-own mb-6 lg:mb-8">
             Furniuture is an essential component of any living space, providing
             functionality comfort and aesthetic appeal.
           </p>
           <div>
-            <Button asChild className="mr-2 rounded-full bg-orange-300 px-8 py-6 text-base font-bold">
+            <Button
+              asChild
+              className="mr-2 rounded-full bg-orange-300 px-8 py-6 text-base font-bold"
+            >
               <Link to="">Shop Now</Link>
             </Button>
-            <Button asChild variant="outline"className="rounded-ful px-8 py-6 text-base text-own">
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-ful text-own px-8 py-6 text-base"
+            >
               <Link to="">Explore</Link>
             </Button>
           </div>
         </div>
-        {/* Image Section */} 
+        {/* Image Section */}
         <img src={couch} alt="couch" className="w-full lg:w-3/5" />
       </div>
-        <CarouselCard products={products} />
+      <CarouselCard products={products} />
+      <Title title="Recent Blog" href="/blogs" sideText="View All Posts" />
+      <BlogCard posts={samplePosts} />
     </div>
   );
 }
