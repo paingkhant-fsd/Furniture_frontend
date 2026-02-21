@@ -8,7 +8,7 @@ function BlogDetail() {
     const { postId } = useParams();
     const post = posts.find((post) => post.id === postId);
   return (
-    <div className="container mx-auto px-4 lg:px-0">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
       <section className="flex flex-col lg:flex-row">
         <section className="w-full lg:w-3/4 lg:pr-16">
           <Button variant="outline" asChild className="mb-6 mt-8">
