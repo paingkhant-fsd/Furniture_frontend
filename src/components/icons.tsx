@@ -1,5 +1,5 @@
 import type React from "react";
-import { HomeIcon, HamburgerMenuIcon, PaperPlaneIcon, ExclamationTriangleIcon, ArrowLeftIcon, LayersIcon } from "@radix-ui/react-icons";
+import { HomeIcon, HamburgerMenuIcon, PaperPlaneIcon, ExclamationTriangleIcon, ArrowLeftIcon, LayersIcon, PlusIcon } from "@radix-ui/react-icons";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -26,4 +26,5 @@ export const Icons = {
     exclamation: ExclamationTriangleIcon,
     arrowLeft: ArrowLeftIcon,
     layers: LayersIcon,
+    plus: PlusIcon,
 };
